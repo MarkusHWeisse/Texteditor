@@ -1,14 +1,22 @@
-class Editor;
-namespace FRONTEND_P20241023_TEXTEDIT {
-	class Cursor;
-	class Slider;
-	class Text;
-	class MarkedText;
-}
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cmath>
+#include <iterator>
+#include <windows.h>
+#include <shobjidl.h>
+#include <objbase.h>
 
+#include "FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
 #include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Text.h"*/
+#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
+#include "Editor.h"
 
-/*
+
 int FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosXToCursorPosXValues(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, int charSize, int charSizeBef, sf::Vector2i &mcords) {
 	
 	int r;
@@ -581,4 +589,79 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::ctrlV(Editor &editor, FRONTEND_P202410
 	MT.unsetActive();
 	cursorInsertText(editor, text, sf::Clipboard::getString(), cursorLineNr, posX, posY);
 	text.denieInput();
-}*/
+}
+
+FRONTEND_P20241023_TEXTEDIT::Cursor::Cursor(FRONTEND_P20241023_TEXTEDIT::MarkedText &MT) {
+	this->posXAtClick = -1;
+	this->lineNrAtClick = -1;
+	this->posYAtClick = -1;
+	this->textMovingWhileMarkingSpeed = 10;
+	this->textMovingWhileMarkingSet = 0;
+	this->MT = MT;
+	MT.unsetActive();
+}
+
+bool FRONTEND_P20241023_TEXTEDIT::Cursor::defaultMTIsActive() {
+	return MT.getActive();
+}
+
+std::string FRONTEND_P20241023_TEXTEDIT::Cursor::getStringFromMarkedText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+	return MT.getString(editor, cursor, text);
+}
+
+cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::deleteDefaultMTString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+	return MT.deleteString(editor, cursor, text);
+}
+
+cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::defaultMTSetString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string stringToInsert) {
+	return MT.setString(editor, cursor, text, stringToInsert);
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::drawDefaultMarkedText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::RenderWindow &window) {
+	MT.drawMarkedText(editor, text, window);
+}
+
+//When posXAtClick is set at -1 all the conditions know that posXAtClick does not have a meaningful value.
+void FRONTEND_P20241023_TEXTEDIT::Cursor::enableSetPosXAtClick() {
+	this->posXAtClick = -1;
+	this->lineNrAtClick = -1;
+	this->posYAtClick = -1;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosXAtClick() {
+	posXAtClick = posX;
+	lineNrAtClick = cursorLineNr;
+	posYAtClick = posY;
+}
+
+int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosY() {
+	return posY;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosY(int x) {
+	posY = x;
+}
+
+int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosX() {
+	return posX;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosX(int x) {
+	posX = x;
+}
+
+int FRONTEND_P20241023_TEXTEDIT::Cursor::getCursorLineNr() {
+	return cursorLineNr;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::setCursorLineNr(int x) {
+	cursorLineNr = x;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::showCursor() {
+	cursorShow = 20;
+}
+
+void FRONTEND_P20241023_TEXTEDIT::Cursor::blankCursor() {
+	cursorShow = 0;
+}
