@@ -1,0 +1,2 @@
+x86_64-w64-mingw32-g++ -g -static-libgcc -static-libstdc++ -Wall main.cpp  -lole32 -luuid -IC:\SFML\include -DSFML_STATIC -LC:\SFML\lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lwinmm -lgdi32 
+x86_64-w64-mingw32-g++ -g -static-libgcc -static-libstdc++ main.cpp -o main.exe -lole32 -luuid -IC:\SFML\include -DSFML_STATIC -LC:\SFML\lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lwinmm -lgdi32 
