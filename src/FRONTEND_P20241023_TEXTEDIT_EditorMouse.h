@@ -20,30 +20,17 @@ public:
 	}
 
 	//Bad Design: intention not obvious -> change!
-	void loadMouseCoordinates(sf::RenderWindow &window) {
-		mcords = m.getPosition(window);
-	}
+	void loadMouseCoordinates(sf::RenderWindow &window);
 
+	int getPosX();
 
-	int getPosX() {
-		return mcords.x;
-	}
+	int getPosY();
 
-	int getPosY() {
-		return mcords.y;
-	}
+	sf::Vector2i& getMouseCords();
 
-	sf::Vector2i& getMouseCords() {
-		return mcords;
-	}
+	void setInUse(bool t);
 
-	void setInUse(bool t) {
-		inUse = t;
-	}
-
-	bool getInUse() {
-		return inUse;
-	}
+	bool getInUse();
 };}
 
 #endif

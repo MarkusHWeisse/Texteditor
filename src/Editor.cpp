@@ -1,6 +1,3 @@
-#ifndef Editor
-#define Editor
-
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
@@ -127,6 +124,3 @@ void Editor::setTitleNotSaved() {
 void Editor::setTitleSaved() {
 	window.setTitle(wTitle);
 }
-
-
-#endif
