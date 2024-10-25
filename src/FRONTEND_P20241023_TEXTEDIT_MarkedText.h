@@ -34,25 +34,16 @@ public:
 	void drawRectangle(sf::RenderWindow &window, int posX, int posY, int width, int height);
 	void checkOrientation();
 
-	void setCursorPositionOne(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1) {
-		this->cp1 = cp1;
-	}
+	void setCursorPositionOne(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1);
 
-	void setCursorPositionTwo(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2) {
-		this->cp2 = cp2;
-	}
+	void setCursorPositionTwo(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2);
 
-	void setActive() {
-		isActive = true;
-	}
+	void setActive();
 
-	void unsetActive() {
-		isActive = false;
-	}
+	void unsetActive();
 
-	bool getActive() {
-		return isActive;
-	}
+	bool getActive();
+	
 };}
 
 #endif

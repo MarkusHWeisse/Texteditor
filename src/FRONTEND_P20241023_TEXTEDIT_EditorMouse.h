@@ -31,6 +31,7 @@ public:
 	void setInUse(bool t);
 
 	bool getInUse();
+	
 };}
 
 #endif
