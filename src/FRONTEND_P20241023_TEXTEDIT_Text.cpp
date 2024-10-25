@@ -118,8 +118,10 @@ void Text::loadFile(std::string file) {
 		while ( getline(myfile,line) )
 		{
 		  
-		  lines.push_back(line);
+			lines.push_back(line);
+			std::cout << "files";
 		}
+		std::cout << "files end";
 		myfile.close();
 	}
 

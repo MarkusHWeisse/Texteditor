@@ -16,10 +16,12 @@
 #include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
 #include "Editor.h"
 
-Editor::Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse)  : text(text), cursor(cursor), slider(slider), mouse(mouse) {
+//Editor::Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse)  : text(text), cursor(cursor), slider(slider), mouse(mouse) {
+Editor::Editor() {
 	/*setTextObj(text);
 	setCursorObj(cursor);
 	setSliderObj(slider);*/
+	//cursor.loadCursor(*this, text);
 	
 	window.create(sf::VideoMode(1200, 900), "Sovieditor");
 	window.setFramerateLimit(60);

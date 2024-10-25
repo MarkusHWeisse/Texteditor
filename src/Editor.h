@@ -1,3 +1,4 @@
+#pragma once
 #ifndef Editor_h
 #define Editor_h
 //#include <SFML/Graphics.hpp>
@@ -11,7 +12,7 @@
 #include "FRONTEND_P20241023_TEXTEDIT_Text.h"
 #include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
 
-
+/*
 namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
 	class Slider;
@@ -19,15 +20,15 @@ namespace FRONTEND_P20241023_TEXTEDIT {
 	class MarkedText;
 	class EditorMouse;
 }
-
+*/
 class Editor {
 private:
 	sf::RenderWindow window;
 	sf::RectangleShape background;
 	sf::RectangleShape leftNumBlock;
-	FRONTEND_P20241023_TEXTEDIT::Text &text;
-	FRONTEND_P20241023_TEXTEDIT::Cursor &cursor;
-	FRONTEND_P20241023_TEXTEDIT::Slider &slider;
+	FRONTEND_P20241023_TEXTEDIT::Text text;
+	FRONTEND_P20241023_TEXTEDIT::Cursor cursor;
+	FRONTEND_P20241023_TEXTEDIT::Slider slider;
 	int GreyBlockSize;
 	bool setCTRL;
 	bool setAlt;
@@ -35,11 +36,13 @@ private:
 	std::string path;
 	std::string wTitle;
 	bool mouseInRange;
-	FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse;
+	FRONTEND_P20241023_TEXTEDIT::EditorMouse mouse;
 
 public:
-
-	Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse);
+	
+	Editor();
+	
+	//Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse);
 
 	void loadEvents(sf::Event &event);
 
@@ -61,7 +64,7 @@ public:
 
 	void openFile(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor);
 
-	void writeFile(Text &text);
+	void writeFile(FRONTEND_P20241023_TEXTEDIT::Text &text);
 
 	void dynamicGBS(FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text);
 

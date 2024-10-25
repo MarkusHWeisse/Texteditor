@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FRONTEND_P20241023_TEXTEDIT_Text_H
 #define FRONTEND_P20241023_TEXTEDIT_Text_H
 
@@ -5,7 +6,7 @@
 #include "FRONTEND_P20241023_TEXTEDIT.h"
 
 class Editor;
-namespace FRONTEND_P20241023_TEXTEDIT {
+ namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
 	class Slider;
 	class MarkedText;

@@ -1,9 +1,10 @@
+#pragma once
 #ifndef FRONTEND_P20241023_TEXTEDIT_EditorMouse
 #define FRONTEND_P20241023_TEXTEDIT_EditorMouse
 
 #include <SFML/Graphics.hpp>
 
-namespace FRONTEND_P20241023_TEXTEDIT {
+ namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
 	class Text;
 	class Slider;

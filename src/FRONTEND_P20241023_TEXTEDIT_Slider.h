@@ -1,10 +1,11 @@
+#pragma once
 #ifndef FRONTEND_P20241023_TEXTEDIT_Slider
 #define FRONTEND_P20241023_TEXTEDIT_Slider
 
 #include <SFML/Graphics.hpp>
 
 class Editor;
-namespace FRONTEND_P20241023_TEXTEDIT {
+ namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
 	class Text;
 	class MarkedText;

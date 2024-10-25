@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FRONTEND_P20241023_TEXTEDIT_MarkedText
 #define FRONTEND_P20241023_TEXTEDIT_MarkedText
 
@@ -5,7 +6,7 @@
 #include "FRONTEND_P20241023_TEXTEDIT.h"
 
 class Editor;
-namespace FRONTEND_P20241023_TEXTEDIT {
+ namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
 	class Slider;
 	class Text;
@@ -26,7 +27,7 @@ public:
 	MarkedText(cursorPosition cp1, cursorPosition cp2);
 
 	std::string getString(Editor &editor, Cursor &cursor, Text &text);
-	cursorPosition setString(Editor &editor, Cursor &cursor, Text &text, std::string stringToInsert);
+	//cursorPosition setString(Editor &editor, Cursor &cursor, Text &text, std::string stringToInsert);
 	cursorPosition deleteString(Editor &editor, Cursor &cursor, Text &text);
 	void drawMarkedText(Editor &editor, Text &text, sf::RenderWindow &window);
 	void drawRectangle(sf::RenderWindow &window, int posX, int posY, int width, int height);

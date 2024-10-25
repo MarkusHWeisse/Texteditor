@@ -12,10 +12,12 @@ for root, dirnames, filenames in os.walk("src/"):
             matches.append(os.path.join(root, filename))
 
 #Compile the program
-env = Environment(CPPPATH=r'C:\Users\marku\OneDrive\Dokumente\privat\SFML-2.6.1-sources\SFML-2.6.1\include');
-#env.Append(CCFLAGS=["-m32"]); #C:\mingw-w64\mingw64\bin    C:\TDM-GCC-64\bin
-env['ENV']['PATH'] = [r'C:\mingw-w64\mingw64\bin']
+env = Environment(CPPPATH=r'C:\SFML\SFML-2.6.1\include');
+#env.Append(CCFLAGS=["-std=c++11"]); #C:\mingw-w64\mingw64\bin    C:\TDM-GCC-64\bin
+env.Append(CCFLAGS=["-fmodules-ts"]);
+#env.Append(CCFLAGS=["-pipes"]);
+env['ENV']['PATH'] = [r'C:\mingw64\bin']
 env['CXX'] = 'g++'
 env.Append(LIBS = ["sfml-graphics","sfml-window","sfml-system"]);
-env.Append(LIBPATH = r"C:\Users\marku\OneDrive\Dokumente\privat\SFML_mingw_w64\lib");
+env.Append(LIBPATH = r"C:\SFML\SFML-2.6.1\lib");
 env.Program(target = "Sovieditor.exe", source = matches)

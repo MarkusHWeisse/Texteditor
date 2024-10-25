@@ -1,8 +1,9 @@
+#pragma once
 #ifndef FRONTEND_P20241023_TEXTEDIT_Cursor
 #define FRONTEND_P20241023_TEXTEDIT_Cursor
 
 #include <SFML/Graphics.hpp>
-//#include "FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
 
 class Editor;
 namespace FRONTEND_P20241023_TEXTEDIT {
@@ -25,11 +26,15 @@ private:
 	int textMovingWhileMarkingSpeed;
 	sf::RectangleShape cursorDraw;
 	sf::RectangleShape cursorBackground;
-	MarkedText &MT;
+	MarkedText MT;
 
 public:
+
+	Cursor() {
+		
+	}	
 	
-	Cursor(MarkedText &MT);
+	Cursor(MarkedText MT);
 
 	void loadEvents(Editor &editor, sf::Event &event, Text &text);
 

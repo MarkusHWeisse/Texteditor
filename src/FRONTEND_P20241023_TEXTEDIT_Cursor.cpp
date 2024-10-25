@@ -791,7 +791,7 @@ void Cursor::ctrlV(Editor &editor, Text &text) {
 
 }
 
-Cursor::Cursor(MarkedText &MT) : MT(MT) {
+Cursor::Cursor(MarkedText MT) {
 	
 	this->posXAtClick = -1;
 	
@@ -822,7 +822,7 @@ cursorPosition Cursor::deleteDefaultMTString(Editor &editor, Cursor &cursor, Tex
 }
 
 cursorPosition Cursor::defaultMTSetString(Editor &editor, Cursor &cursor, Text &text, std::string stringToInsert) {
-	return MT.setString(editor, cursor, text, stringToInsert);
+	//return MT.getString(editor, cursor, text);
 }
 
 void Cursor::drawDefaultMarkedText(Editor &editor, Text &text, sf::RenderWindow &window) {
