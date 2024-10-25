@@ -1,12 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <cmath>
-#include <iterator>
-#include <windows.h>
-#include <shobjidl.h>
-#include <objbase.h>
 
 #include "FRONTEND_P20241023_TEXTEDIT.h"
 #include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"

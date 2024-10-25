@@ -21,11 +21,7 @@ public:
 		
 	}	
 
-	MarkedText(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1, FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2) {
-		this->cp1 = cp1;
-		this->cp2 = cp2;
-		isActive = true;
-	}
+	MarkedText(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1, FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2);
 
 	std::string getString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text);
 	cursorPosition setString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string stringToInsert);

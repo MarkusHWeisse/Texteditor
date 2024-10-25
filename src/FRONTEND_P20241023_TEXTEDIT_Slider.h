@@ -31,17 +31,7 @@ public:
 
 	}
 
-	Slider(int posX, int posY) {
-		this->posX = posX;
-		this->posY = posY;
-		this->defaultSize = 20;
-		this->sizeY = defaultSize;
-		this->inUse = false;
-		this->mPosBef = 0;
-		this->changeY = 0;
-		this->allowUpdate = true;
-		this->sliderWidth = 7;
-	}
+	Slider(int posX, int posY);
 
 	void loadEvents(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
 	void loadDraw(Editor &editor, sf::RenderWindow &window);
@@ -52,46 +42,26 @@ public:
 	void setChangeYOutOfBounds(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
 	void setChangeYInBounds(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
 
-	void setInUse(bool t) {
-		inUse = t;
-	}
+	void setInUse(bool t);
 
-	bool getInUse() {
-		return inUse;
-	}
+	bool getInUse();
 
-	void setSliderWidth(int x) {
-		this->sliderWidth = x;
-	}
+	void setSliderWidth(int x);
 
-	int getSliderWidth() {
-		return this->sliderWidth + 10;
-	}
+	int getSliderWidth();
 
-	void setCPosY(int posY) {
-		this->changeY = posY;
-	}
+	void setCPosY(int posY);
 
-	int getCPosY() {
-		return changeY;
-	}
+	int getCPosY();
 
-	void setPosY(int posY) {
-		this->posY = posY;
-	}
+	void setPosY(int posY);
 
-	void setPosX(int posX) {
-		this->posX = posX;
-	} 
+	void setPosX(int posX);
 
-	int getPosX() {
-		return posX;
-	}
+	int getPosX();
 
-	void escapeEvent() {
-		inUse = false;
-		mPosBef = 0;
-	}
+	void escapeEvent();
+	
 };}
 
 #endif
