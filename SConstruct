@@ -13,7 +13,7 @@ for root, dirnames, filenames in os.walk("src/"):
 
 #Compile the program
 env = Environment(CPPPATH=r'C:\Users\marku\OneDrive\Dokumente\privat\SFML-2.6.1-sources\SFML-2.6.1\include');
-#env.Append(CCFLAGS=["-m32"]);
+#env.Append(CCFLAGS=["-m32"]); #C:\mingw-w64\mingw64\bin    C:\TDM-GCC-64\bin
 env['ENV']['PATH'] = [r'C:\mingw-w64\mingw64\bin']
 env['CXX'] = 'g++'
 env.Append(LIBS = ["sfml-graphics","sfml-window","sfml-system"]);

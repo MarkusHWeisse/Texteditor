@@ -8,12 +8,14 @@
 #include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
 #include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
 #include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Text.h"*/
+#include "FRONTEND_P20241023_TEXTEDIT_Text.h"
 #include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
 #include "Editor.h"
 
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosXToCursorPosXValues(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, int charSize, int charSizeBef, sf::Vector2i &mcords) {
+namespace FRONTEND_P20241023_TEXTEDIT {
+
+int Cursor::setMousePosXToCursorPosXValues(Editor &editor, Text &text, int charSize, int charSizeBef, sf::Vector2i &mcords) {
 	
 	int r;
 	
@@ -37,7 +39,7 @@ int FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosXToCursorPosXValues(Editor &
 
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosXToCursorX(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords, int lineNr) {
+int Cursor::setMousePosXToCursorX(Editor &editor, Text &text, sf::Vector2i &mcords, int lineNr) {
 	
 	int charSize = 0;
 	
@@ -69,13 +71,13 @@ int FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosXToCursorX(Editor &editor, F
 	
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getMousePosYToLineNr(int mousePosY, int fontSize, int topSpace) {
+int Cursor::getMousePosYToLineNr(int mousePosY, int fontSize, int topSpace) {
 	
 	return (int)((mousePosY - topSpace) / fontSize);
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosYToLine(FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords) {
+void Cursor::setMousePosYToLine(Text &text, sf::Vector2i &mcords) {
 	
 	cursorLineNr = getMousePosYToLineNr(mcords.y, text.getFontSizeSpacing(), 3);
 	
@@ -85,7 +87,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosYToLine(FRONTEND_P20241023_
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosToCursorPos(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords) {
+void Cursor::setMousePosToCursorPos(Editor &editor, Text &text, sf::Vector2i &mcords) {
 	
 	setMousePosYToLine(text, mcords);
 
@@ -101,12 +103,12 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setMousePosToCursorPos(Editor &editor,
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::checkMouseInWindowBounds(sf::Vector2i &mcords, int screenPosX, int screenPosY, int screenWidth, int screenHeight) {
+bool Cursor::checkMouseInWindowBounds(sf::Vector2i &mcords, int screenPosX, int screenPosY, int screenWidth, int screenHeight) {
 	
 	return mcords.x >= screenPosX && mcords.x <= screenWidth && mcords.y >= screenPosY && mcords.y <= screenHeight;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseMarking(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords) {
+void Cursor::cursorMouseMarking(Editor &editor, Text &text, sf::Vector2i &mcords) {
 	
 	if(lineNrAtClick - cursorLineNr != 0 || getPosXToCharNr(editor, text, posX, cursorLineNr) - getPosXToCharNr(editor, text, posXAtClick, lineNrAtClick) != 0) {
 		
@@ -122,7 +124,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseMarking(Editor &editor, FRO
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseEventRecognition(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords) {
+void Cursor::cursorMouseEventRecognition(Editor &editor, Text &text, sf::Vector2i &mcords) {
 	
 	setMousePosToCursorPos(editor, text, mcords);
 	
@@ -132,7 +134,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseEventRecognition(Editor &ed
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorTextMovingWhileMarking(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Vector2i &mcords) {
+void Cursor::cursorTextMovingWhileMarking(Editor &editor, Text &text, sf::Vector2i &mcords) {
 	
 	if(textMovingWhileMarkingSet == 0 || textMovingWhileMarkingSpeed > 0) {
 		
@@ -156,7 +158,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorTextMovingWhileMarking(Editor &e
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseEvent(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::Vector2i &mcords) {
+void Cursor::cursorMouseEvent(Editor &editor, Text &text, sf::Event &event, sf::Vector2i &mcords) {
 	
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && checkMouseInWindowBounds(mcords, 0, -20, editor.wGetSize().x - editor.getLeftIndent(), editor.wGetSize().y+20)) {
 		
@@ -185,7 +187,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMouseEvent(Editor &editor, FRONT
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setCursorRects(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::setCursorRects(Editor &editor, Text &text) {
 	
 	cursorBackground.setSize(sf::Vector2f(editor.wGetSize().x - editor.getGreyBlockSize(), text.getFontSizeSpacing()));
 	
@@ -201,7 +203,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setCursorRects(Editor &editor, FRONTEN
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::loadCursor(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::loadCursor(Editor &editor, Text &text) {
 	
 	loadVars(editor);
 	
@@ -209,7 +211,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::loadCursor(Editor &editor, FRONTEND_P2
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::loadVars(Editor &editor) {
+void Cursor::loadVars(Editor &editor) {
 	
 	posY = 0;
 	
@@ -223,7 +225,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::loadVars(Editor &editor) {
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorLeft(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorLeft(Editor &editor, Text &text) {
 	
 	if(editor.getCTRL()) {
 		
@@ -235,7 +237,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorLeft(Editor &editor, FRONTEND_P2
 		
 		int nextChar = 0;
 		
-		text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);
+		text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this);
 		
 		if(text.getLine(cursorLineNr).at(nextChar - 1) == '	') {
 			
@@ -253,7 +255,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorLeft(Editor &editor, FRONTEND_P2
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorRight(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorRight(Editor &editor, Text &text) {
 	
 	if(editor.getCTRL()) {
 		
@@ -263,13 +265,13 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorRight(Editor &editor, FRONTEND_P
 
 	int charPosSize = 0;
 	
-	text.countChars(&charPosSize, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);
+	text.countChars(&charPosSize, editor, text.getLine(cursorLineNr), *this);
 	
 	if(charPosSize < text.getLine(cursorLineNr).length()) {
 		
 		int nextChar = 0;
 		
-		text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);
+		text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this);
 		
 		if(text.getLine(cursorLineNr).at(nextChar) == '	') {
 			
@@ -287,7 +289,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorRight(Editor &editor, FRONTEND_P
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorU(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorU(Editor &editor, Text &text) {
 	
 	int maxLines = (int)((editor.wGetSize().y - 3) / text.getFontSizeSpacing());
 
@@ -311,7 +313,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorU(Editor &editor, FRONTEND_P2024
 
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorUp(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) { 
+bool Cursor::cursorUp(Editor &editor, Text &text) { 
 
 	if(editor.getCTRL()) {
 		
@@ -341,7 +343,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorUp(Editor &editor, FRONTEND_P202
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorD(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorD(Editor &editor, Text &text) {
 	
 	int maxLines = (int)((editor.wGetSize().y - 3) / text.getFontSizeSpacing());
 
@@ -365,7 +367,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorD(Editor &editor, FRONTEND_P2024
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorDown(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorDown(Editor &editor, Text &text) {
 	
 	if(editor.getCTRL()) {
 		
@@ -395,11 +397,11 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorDown(Editor &editor, FRONTEND_P2
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setNormalBackspace(Editor &editor, Text &text, int cursorCharNr) {
+void Cursor::setNormalBackspace(Editor &editor, Text &text, int cursorCharNr) {
 
 	int nextChar = 0;
 
-	text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);
+	text.countChars(&nextChar, editor, text.getLine(cursorLineNr), *this);
 
 	if(text.getLine(cursorLineNr).at(nextChar - 1) == '	') {
 
@@ -417,7 +419,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setNormalBackspace(Editor &editor, Tex
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setDeleteLineBackspace(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::setDeleteLineBackspace(Editor &editor, Text &text) {
 
 	std::string deletedLine = text.getLine(cursorLineNr);
 
@@ -437,7 +439,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setDeleteLineBackspace(Editor &editor,
 
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorSimpleBackspace(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorSimpleBackspace(Editor &editor, Text &text) {
 
 	if(editor.getCTRL()) {
 
@@ -447,7 +449,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorSimpleBackspace(Editor &editor, 
 
 	int cursorCharNr = 0;
 
-	text.countChars(&cursorCharNr, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);
+	text.countChars(&cursorCharNr, editor, text.getLine(cursorLineNr), *this);
 
 	if((posX-editor.getGreyBlockSize()) != 0) {
 
@@ -463,7 +465,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorSimpleBackspace(Editor &editor, 
 
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMTBackspace(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorMTBackspace(Editor &editor, Text &text) {
 
 	cursorPosition cp = deleteDefaultMTString(editor, *this, text);
 
@@ -485,7 +487,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorMTBackspace(Editor &editor, FRON
 
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorBackspace(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorBackspace(Editor &editor, Text &text) {
 
 	if(defaultMTIsActive()) {
 
@@ -507,7 +509,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorBackspace(Editor &editor, FRONTE
 
 } 
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getTabsForNewLine(FRONTEND_P20241023_TEXTEDIT::Text &text, int tillPos) {
+int Cursor::getTabsForNewLine(Text &text, int tillPos) {
 
 	int tabNr = 0;
 
@@ -529,7 +531,7 @@ int FRONTEND_P20241023_TEXTEDIT::Cursor::getTabsForNewLine(FRONTEND_P20241023_TE
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosYBottomLine(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::setPosYBottomLine(Editor &editor, Text &text) {
 
 	if((posY+1) > (int)((editor.wGetSize().y - 3) / text.getFontSizeSpacing()) - 1) {
 
@@ -543,7 +545,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosYBottomLine(Editor &editor, FRON
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::createNewLineSetNewLineParameters(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, int &lineNr, int tillPos, int tabNr) {
+void Cursor::createNewLineSetNewLineParameters(Editor &editor, Text &text, int &lineNr, int tillPos, int tabNr) {
 
 	std::string insertStr = text.getLine(lineNr).substr(tillPos, text.getLine(lineNr).length());
 
@@ -558,7 +560,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::createNewLineSetNewLineParameters(Edit
 
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorEnter(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+bool Cursor::cursorEnter(Editor &editor, Text &text) {
 
 	if(editor.getCTRL()) {
 
@@ -567,7 +569,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorEnter(Editor &editor, FRONTEND_P
 	}
 
 	int strPos = 0;
-	text.countChars(&strPos, editor, text.getLine(cursorLineNr), *this, text.countCharsSize);	
+	text.countChars(&strPos, editor, text.getLine(cursorLineNr), *this);	
 
 	setPosYBottomLine(editor, text);
 
@@ -581,7 +583,7 @@ bool FRONTEND_P20241023_TEXTEDIT::Cursor::cursorEnter(Editor &editor, FRONTEND_P
 
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosXToCharNr(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, int linePosX, int lineNr) {
+int Cursor::getPosXToCharNr(Editor &editor, Text &text, int linePosX, int lineNr) {
 
 	int width = 0;
 
@@ -616,7 +618,7 @@ int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosXToCharNr(Editor &editor, FRONTEN
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorInsertTextMakeNewLine(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string &textToInsert, int &lineNr, int &linePosX) {
+void Cursor::cursorInsertTextMakeNewLine(Editor &editor, Text &text, std::string &textToInsert, int &lineNr, int &linePosX) {
 
 	int j = getPosXToCharNr(editor, text, linePosX, lineNr);
 
@@ -667,9 +669,9 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::cursorInsertTextMakeNewLine(Editor &ed
 
 }
 
-cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::cursorInsertText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string textToInsert, int lineNr, int linePosX, int linePosY) {
+cursorPosition Cursor::cursorInsertText(Editor &editor, Text &text, std::string textToInsert, int lineNr, int linePosX, int linePosY) {
 
-	cursorPosition returnCP;
+	FRONTEND_P20241023_TEXTEDIT::cursorPosition returnCP;
 
 	returnCP.lineNr = lineNr;
 
@@ -691,11 +693,11 @@ cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::cursorInsertText(Editor &edi
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::loadEvents(Editor &editor, sf::Event &event, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::loadEvents(Editor &editor, sf::Event &event, Text &text) {
 	
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::loadDraw(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::RenderWindow &window) { //Constant Framerate important, no usage of time.
+void Cursor::loadDraw(Editor &editor, Text &text, sf::RenderWindow &window) { //Constant Framerate important, no usage of time.
 
 	cursorBackground.setPosition(editor.getGreyBlockSize(), (posY * text.getFontSizeSpacing()) + 3);
 
@@ -733,7 +735,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::loadDraw(Editor &editor, FRONTEND_P202
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::simpleCtrlV(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::simpleCtrlV(Editor &editor, Text &text) {
 	
 	cursorPosition cp;
 	
@@ -751,7 +753,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::simpleCtrlV(Editor &editor, FRONTEND_P
 
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::ctrlV(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+void Cursor::ctrlV(Editor &editor, Text &text) {
 	
 	if(!editor.getCTRL()) {
 	
@@ -789,7 +791,7 @@ void FRONTEND_P20241023_TEXTEDIT::Cursor::ctrlV(Editor &editor, FRONTEND_P202410
 
 }
 
-FRONTEND_P20241023_TEXTEDIT::Cursor::Cursor(FRONTEND_P20241023_TEXTEDIT::MarkedText &MT) {
+Cursor::Cursor(MarkedText &MT) : MT(MT) {
 	
 	this->posXAtClick = -1;
 	
@@ -807,67 +809,69 @@ FRONTEND_P20241023_TEXTEDIT::Cursor::Cursor(FRONTEND_P20241023_TEXTEDIT::MarkedT
 	
 }
 
-bool FRONTEND_P20241023_TEXTEDIT::Cursor::defaultMTIsActive() {
+bool Cursor::defaultMTIsActive() {
 	return MT.getActive();
 }
 
-std::string FRONTEND_P20241023_TEXTEDIT::Cursor::getStringFromMarkedText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+std::string Cursor::getStringFromMarkedText(Editor &editor, Cursor &cursor, Text &text) {
 	return MT.getString(editor, cursor, text);
 }
 
-cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::deleteDefaultMTString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text) {
+cursorPosition Cursor::deleteDefaultMTString(Editor &editor, Cursor &cursor, Text &text) {
 	return MT.deleteString(editor, cursor, text);
 }
 
-cursorPosition FRONTEND_P20241023_TEXTEDIT::Cursor::defaultMTSetString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string stringToInsert) {
+cursorPosition Cursor::defaultMTSetString(Editor &editor, Cursor &cursor, Text &text, std::string stringToInsert) {
 	return MT.setString(editor, cursor, text, stringToInsert);
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::drawDefaultMarkedText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::RenderWindow &window) {
+void Cursor::drawDefaultMarkedText(Editor &editor, Text &text, sf::RenderWindow &window) {
 	MT.drawMarkedText(editor, text, window);
 }
 
 //When posXAtClick is set at -1 all the conditions know that posXAtClick does not have a meaningful value.
-void FRONTEND_P20241023_TEXTEDIT::Cursor::enableSetPosXAtClick() {
+void Cursor::enableSetPosXAtClick() {
 	this->posXAtClick = -1;
 	this->lineNrAtClick = -1;
 	this->posYAtClick = -1;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosXAtClick() {
+void Cursor::setPosXAtClick() {
 	posXAtClick = posX;
 	lineNrAtClick = cursorLineNr;
 	posYAtClick = posY;
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosY() {
+int Cursor::getPosY() {
 	return posY;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosY(int x) {
+void Cursor::setPosY(int x) {
 	posY = x;
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getPosX() {
+int Cursor::getPosX() {
 	return posX;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setPosX(int x) {
+void Cursor::setPosX(int x) {
 	posX = x;
 }
 
-int FRONTEND_P20241023_TEXTEDIT::Cursor::getCursorLineNr() {
+int Cursor::getCursorLineNr() {
 	return cursorLineNr;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::setCursorLineNr(int x) {
+void Cursor::setCursorLineNr(int x) {
 	cursorLineNr = x;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::showCursor() {
+void Cursor::showCursor() {
 	cursorShow = 20;
 }
 
-void FRONTEND_P20241023_TEXTEDIT::Cursor::blankCursor() {
+void Cursor::blankCursor() {
 	cursorShow = 0;
+}
+
 }

@@ -1,12 +1,12 @@
 #ifndef FRONTEND_P20241023_TEXTEDIT_EditorMouse
 #define FRONTEND_P20241023_TEXTEDIT_EditorMouse
 
-#include "FRONTEND_P20241023_TEXTEDIT.h"
+#include <SFML/Graphics.hpp>
 
 namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
-	class Slider;
 	class Text;
+	class Slider;
 	class MarkedText;
 
 	class EditorMouse {	

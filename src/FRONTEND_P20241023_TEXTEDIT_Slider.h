@@ -1,8 +1,7 @@
 #ifndef FRONTEND_P20241023_TEXTEDIT_Slider
 #define FRONTEND_P20241023_TEXTEDIT_Slider
 
-#include "FRONTEND_P20241023_TEXTEDIT.h"
-//#include "Editor.h"
+#include <SFML/Graphics.hpp>
 
 class Editor;
 namespace FRONTEND_P20241023_TEXTEDIT {
@@ -33,14 +32,14 @@ public:
 
 	Slider(int posX, int posY);
 
-	void loadEvents(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
+	void loadEvents(Editor &editor, Cursor &cursor, Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
 	void loadDraw(Editor &editor, sf::RenderWindow &window);
-	void updateSlider(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text);
-	void setChangeYToLine(FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::RenderWindow &window);
-	void sliderInUse(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
-	void sliderClicked(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
-	void setChangeYOutOfBounds(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
-	void setChangeYInBounds(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
+	void updateSlider(Editor &editor, Cursor &cursor, Text &text);
+	void setChangeYToLine(Cursor &cursor, Text &text, sf::RenderWindow &window);
+	void sliderInUse(Editor &editor, Cursor &cursor, Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
+	void sliderClicked(Editor &editor, Cursor &cursor, Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
+	void setChangeYOutOfBounds(Editor &editor, Cursor &cursor, Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
+	void setChangeYInBounds(Editor &editor, Cursor &cursor, Text &text, sf::Event &event, sf::RenderWindow &window, sf::Vector2i &mcords);
 
 	void setInUse(bool t);
 

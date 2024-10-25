@@ -1,7 +1,5 @@
 #ifndef FRONTEND_P20241023_TEXTEDIT
 #define FRONTEND_P20241023_TEXTEDIT
-#include <SFML/Graphics.hpp>
-#include <iostream>
 
 namespace FRONTEND_P20241023_TEXTEDIT {
 	

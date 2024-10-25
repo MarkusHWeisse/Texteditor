@@ -1,8 +1,8 @@
-#ifndef FRONTEND_P20241023_TEXTEDIT_Text
-#define FRONTEND_P20241023_TEXTEDIT_Text
+#ifndef FRONTEND_P20241023_TEXTEDIT_Text_H
+#define FRONTEND_P20241023_TEXTEDIT_Text_H
 
+#include <SFML/Graphics.hpp>
 #include "FRONTEND_P20241023_TEXTEDIT.h"
-//#include "Editor.h"
 
 class Editor;
 namespace FRONTEND_P20241023_TEXTEDIT {
@@ -17,7 +17,7 @@ private:
 	sf::Text textDraw;
 	float bottomLine;
 	bool allowInput;
-	FRONTEND_P20241023_TEXTEDIT::TextWidths textWidths;
+	TextWidths textWidths;
 	int fontSize;
 	int fontSizeSpacing;
 	sf::Font font;
@@ -34,9 +34,9 @@ public:
 	void loadVars();
 	void loadText();
 	void insertText(int cursorLineNr, int cursorCharNr, char insert, bool deleteB);
-	void loadEvents(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, sf::Event &event);
+	void loadEvents(Editor &editor, Cursor &cursor, sf::Event &event);
 	void loadDraw(sf::RenderWindow &window, Editor &editor);
-	void countChars(void* outVal, Editor &editor, std::string s1, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, void func(int* outVal2, int* igive, int* sgive));
+	void countChars(void* outVal, Editor &editor, std::string s1, Cursor &cursor); //, void func(int* outVal2, int* igive, int* sgive)
 	int getSize(int lineNr, int charNr);
 	void drawText(sf::RenderWindow &window);
 	//void countCharsTab(int* i, int* size, int* i2);
@@ -75,7 +75,9 @@ public:
 
 	bool allowInputSet();
 
-	static void countCharsSize(int* outVal, int* i, int* size);
+	void countCharsSize(int* outVal, int* i, int* size) {
+		//(*(int*)(outVal)) = (*i)+1;
+	}
 	
 };}
 

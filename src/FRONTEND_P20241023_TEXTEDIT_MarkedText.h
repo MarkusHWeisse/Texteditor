@@ -1,8 +1,8 @@
 #ifndef FRONTEND_P20241023_TEXTEDIT_MarkedText
 #define FRONTEND_P20241023_TEXTEDIT_MarkedText
 
+#include <SFML/Graphics.hpp>
 #include "FRONTEND_P20241023_TEXTEDIT.h"
-//#include "Editor.h"
 
 class Editor;
 namespace FRONTEND_P20241023_TEXTEDIT {
@@ -10,9 +10,11 @@ namespace FRONTEND_P20241023_TEXTEDIT {
 	class Slider;
 	class Text;
 	
+	struct cursorPosition;
+	
 	class MarkedText {
-	FRONTEND_P20241023_TEXTEDIT::cursorPosition cp1;
-	FRONTEND_P20241023_TEXTEDIT::cursorPosition cp2;
+	cursorPosition cp1;
+	cursorPosition cp2;
 	bool isActive;
 	sf::RectangleShape rs;
 
@@ -21,18 +23,18 @@ public:
 		
 	}	
 
-	MarkedText(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1, FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2);
+	MarkedText(cursorPosition cp1, cursorPosition cp2);
 
-	std::string getString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text);
-	cursorPosition setString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text, std::string stringToInsert);
-	cursorPosition deleteString(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Text &text);
-	void drawMarkedText(Editor &editor, FRONTEND_P20241023_TEXTEDIT::Text &text, sf::RenderWindow &window);
+	std::string getString(Editor &editor, Cursor &cursor, Text &text);
+	cursorPosition setString(Editor &editor, Cursor &cursor, Text &text, std::string stringToInsert);
+	cursorPosition deleteString(Editor &editor, Cursor &cursor, Text &text);
+	void drawMarkedText(Editor &editor, Text &text, sf::RenderWindow &window);
 	void drawRectangle(sf::RenderWindow &window, int posX, int posY, int width, int height);
 	void checkOrientation();
 
-	void setCursorPositionOne(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp1);
+	void setCursorPositionOne(cursorPosition &cp1);
 
-	void setCursorPositionTwo(FRONTEND_P20241023_TEXTEDIT::cursorPosition &cp2);
+	void setCursorPositionTwo(cursorPosition &cp2);
 
 	void setActive();
 

@@ -1,7 +1,16 @@
-#ifndef Editor
-#define Editor
+#ifndef Editor_h
+#define Editor_h
+//#include <SFML/Graphics.hpp>
+
+//#include "FRONTEND_P20241023_TEXTEDIT.h"
 
 #include "FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Text.h"
+#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
+
 
 namespace FRONTEND_P20241023_TEXTEDIT {
 	class Cursor;
@@ -29,6 +38,8 @@ private:
 	FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse;
 
 public:
+
+	Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse);
 
 	void loadEvents(sf::Event &event);
 
@@ -76,11 +87,11 @@ public:
 
 	void setFilePath(std::string p);
 
-	void setTextObj(FRONTEND_P20241023_TEXTEDIT::Text &text);
+	void setTextObj(FRONTEND_P20241023_TEXTEDIT::Text text);
 
 	void setCursorObj(FRONTEND_P20241023_TEXTEDIT::Cursor &cursor);
 
-	void setSliderObj(FRONTEND_P20241023_TEXTEDIT::Slider &slider);
+	void setSliderObj(FRONTEND_P20241023_TEXTEDIT::Slider slider);
 
 	int getGreyBlockSize();
 
