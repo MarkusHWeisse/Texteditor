@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 	FRONTEND_P20241023_TEXTEDIT::Text s_t;
 	FRONTEND_P20241023_TEXTEDIT::MarkedText cursor_MT;
 	FRONTEND_P20241023_TEXTEDIT::Cursor s_c(cursor_MT);
-	FRONTEND_P20241023_TEXTEDIT::Slider slider_t(1200 - 10, 0);
+	FRONTEND_P20241023_TEXTEDIT::Slider slider_t(editor.wGetSize().x - 10, 0);
 
 	//Editor editor(s_t, s_c, slider_t, m_t);
 	

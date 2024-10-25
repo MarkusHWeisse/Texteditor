@@ -26,9 +26,10 @@ Editor::Editor() {
 	window.create(sf::VideoMode(1200, 900), "Sovieditor");
 	window.setFramerateLimit(60);
 
-	HWND win = window.getSystemHandle();
+	/*HWND win = window.getSystemHandle();
 	SetWindowLongPtr(win, GWL_EXSTYLE, GetWindowLongPtr(win, GWL_EXSTYLE) | WS_EX_LAYERED);
 	SetLayeredWindowAttributes(window.getSystemHandle(), 0x00FFFFFF, 228, LWA_ALPHA);
+	*/
 
 	GreyBlockSize = 30;
 	background.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
@@ -57,7 +58,7 @@ void Editor::writeFile(FRONTEND_P20241023_TEXTEDIT::Text &text) {
 }
 
 void Editor::openFile(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor) {
-	std::string file_path = "main_v_6";//fileDialogWinApi();
+	std::string file_path = "main_v_6.txt";//fileDialogWinApi();
 	text.loadFile(file_path);
 	text.loadText();
 	cursor.loadVars(*this);
@@ -82,7 +83,7 @@ void Editor::loadEditor(std::string path1) {
 		std::string file_path;
 		if(!getline(file, file_path)) {
 			std::ofstream wfile("se_data_current.sedatac");
-			file_path = "main_v_6";
+			file_path = "main_v_6.txt";
 			wfile << file_path;
 			wfile.close();
 		}
@@ -392,7 +393,7 @@ void Editor::setTextObj(FRONTEND_P20241023_TEXTEDIT::Text text) {
 }
 
 void Editor::setCursorObj(FRONTEND_P20241023_TEXTEDIT::Cursor &cursor) {
-	//this->cursor = cursor;
+	this->cursor = cursor;
 	
 	cursor.loadCursor(*this, text);
 }

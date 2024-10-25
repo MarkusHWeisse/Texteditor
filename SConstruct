@@ -14,7 +14,7 @@ for root, dirnames, filenames in os.walk("src/"):
 #Compile the program
 env = Environment(CPPPATH=r'C:\SFML\SFML-2.6.1\include');
 #env.Append(CCFLAGS=["-std=c++11"]); #C:\mingw-w64\mingw64\bin    C:\TDM-GCC-64\bin
-env.Append(CCFLAGS=["-fmodules-ts"]);
+#env.Append(CCFLAGS=["-g"]);
 #env.Append(CCFLAGS=["-pipes"]);
 env['ENV']['PATH'] = [r'C:\mingw64\bin']
 env['CXX'] = 'g++'
