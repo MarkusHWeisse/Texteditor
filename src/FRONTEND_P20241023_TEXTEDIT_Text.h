@@ -26,13 +26,7 @@ private:
 	std::vector<sf::Text> textDrawVector;
 
 public:
-	Text() {
-		keywords = {"/*", "*/", "//", "void", "int", "double", "float", "bool", "return", "break", "switch", "case", "class", "struct", "if", "else", "while", "for", "#include", "#if",
-		"#define", "#ifndef", "#endif", "public:", "private:", "string", "std", "sf"};
-		keywordsSpecial = {"{", "}", "=", "!", "(", ")", ";", ":", "+", "-", "*", "/", "\"", ">", ",", "<"};
-
-		setFontSize(14, 20);
-	}
+	Text();
 
 	void loadFile(std::string file);
 	int loadFont(std::string sfont);
@@ -47,78 +41,42 @@ public:
 	void drawText(sf::RenderWindow &window);
 	//void countCharsTab(int* i, int* size, int* i2);
 
-	int getFontSize() {
-		return fontSize;
-	}
+	int getFontSize();
 
-	int getFontSizeSpacing() {
-		return fontSizeSpacing;
-	}
+	int getFontSizeSpacing();
 
-	void setFontSize(int real, int spacing) {
-		fontSize = real;
-		fontSizeSpacing = spacing;
-	}
+	void setFontSize(int real, int spacing);
 
-	float getBottomLine() {
-		return bottomLine;
-	}
+	float getBottomLine();
 
-	void setBottomLine(float x) {
-		bottomLine = x;
-	}
+	void setBottomLine(float x);
 
-	std::string getLine(int x) {
-		return lines.at(x);
-	} 
+	std::string getLine(int x);
 
-	int getCharWidth() {
-		return textWidths.charWidth;
-	}
+	int getCharWidth();
 
-	int getTabWidth() {
-		return textWidths.tabWidth;
-	}
+	int getTabWidth();
 
-	int getTextWidth() {
-		return textWidths.textWidth;
-	}
+	int getTextWidth();
 
-	int getLineSize() {
-		return lines.size();
-	}
+	int getLineSize();
 
-	void insertLines(int cursorLineNr, std::string text) {
-		lines.insert(lines.begin() + cursorLineNr, text);
-	}
+	void insertLines(int cursorLineNr, std::string text);
 
-	void deleteLine(int x) {
-		lines.erase(lines.begin() + x);
-	}
+	void deleteLine(int x);
 
-	void addText(int x, std::string textAdd) {
-		lines.at(x) += textAdd;
-	}
+	void addText(int x, std::string textAdd);
 
-	void setText(int x, std::string textSet) {
-		lines.at(x) = textSet;
-	}
+	void setText(int x, std::string textSet);
 
-	void setAllowInput() {
-		allowInput = true;
-	}
+	void setAllowInput();
 
-	void denieInput() {
-		allowInput = false;
-	}
+	void denieInput();
 
-	bool allowInputSet() {
-		return allowInput;
-	}
+	bool allowInputSet();
 
-	static void countCharsSize(int* outVal, int* i, int* size) {
-		(*(int*)(outVal)) = (*i)+1;
-	}
+	static void countCharsSize(int* outVal, int* i, int* size);
+	
 };}
 
 #endif
