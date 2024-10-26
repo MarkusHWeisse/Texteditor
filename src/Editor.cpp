@@ -58,7 +58,7 @@ void Editor::writeFile(FRONTEND_P20241023_TEXTEDIT::Text &text) {
 }
 
 void Editor::openFile(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor) {
-	std::string file_path = "main_v_6.txt";//fileDialogWinApi();
+	std::string file_path = "../main_v_6.txt";//fileDialogWinApi();
 	text.loadFile(file_path);
 	text.loadText();
 	cursor.loadVars(*this);
@@ -83,7 +83,7 @@ void Editor::loadEditor(std::string path1) {
 		std::string file_path;
 		if(!getline(file, file_path)) {    
 			std::ofstream wfile("se_data_current.sedatac");
-			file_path = "main_v_6.txt";
+			file_path = "../main_v_6.txt";
 			wfile << file_path;
 			wfile.close();
 		}
