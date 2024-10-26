@@ -5,12 +5,12 @@
 #include <iterator>
 
 #include "FRONTEND_P20241023_TEXTEDIT.h"
-#include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Text.h"
-#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
-#include "Editor.h"
+#include "EditorMouse.h"
+#include "Cursor.h"
+#include "Slider.h"
+#include "Text.h"
+#include "MarkedText.h"
+#include "../Editor.h"
 
 
 namespace FRONTEND_P20241023_TEXTEDIT {

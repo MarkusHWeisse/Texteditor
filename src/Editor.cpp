@@ -8,12 +8,12 @@
 #include <shobjidl.h>
 #include <objbase.h>
 
-#include "FRONTEND_P20241023_TEXTEDIT.h"
-#include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
-#include "FRONTEND_P20241023_TEXTEDIT_Text.h"
-#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
+#include "FRONTEND_P20241023_TEXTEDIT/FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT/EditorMouse.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Cursor.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Slider.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Text.h"
+#include "FRONTEND_P20241023_TEXTEDIT/MarkedText.h"
 #include "Editor.h"
 
 //Editor::Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse)  : text(text), cursor(cursor), slider(slider), mouse(mouse) {

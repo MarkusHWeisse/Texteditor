@@ -3,7 +3,7 @@
 #define FRONTEND_P20241023_TEXTEDIT_Cursor
 
 #include <SFML/Graphics.hpp>
-#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
+#include "MarkedText.h"
 
 class Editor;
 namespace FRONTEND_P20241023_TEXTEDIT {
