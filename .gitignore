@@ -1,0 +1,19 @@
+
+#untrack all object files
+*.o
+
+#untrack specific .exe files
+
+Sovieditor.exe
+
+#untrack specific test code files
+
+main_v_6.txt
+
+#untrack random vim files
+
+.un~
+
+#untrack test .bat compilation file
+
+comp.bat
