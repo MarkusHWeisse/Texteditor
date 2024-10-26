@@ -171,7 +171,7 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
 
 /*
  *
- *Yes this is actual garbage code, deal with it.
+ *Yes this is absolute garbage code, deal with it.
  *It's only a prototype to see what something like this looks like. 
  *
  */

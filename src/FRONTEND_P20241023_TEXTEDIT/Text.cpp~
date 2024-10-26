@@ -169,6 +169,13 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
 	lines.at(cursorLineNr) = lines.at(cursorLineNr).substr(0, cursorCharNr-(deleteB ? 1 : 0)) + sinsert + lines.at(cursorLineNr).substr(cursorCharNr, lines.at(cursorLineNr).size()-(cursorCharNr));
 }
 
+/*
+ *
+ *Yes this is actual garbage code, deal with it.
+ *It's only a prototype to see what something like this looks like. 
+ *
+ */
+
 void Text::loadDraw(sf::RenderWindow &window, Editor &editor) {
 	textDrawVector.clear();
 	int ilinec = ((int)bottomLine < 0) ? 0 : (int)bottomLine-1;
