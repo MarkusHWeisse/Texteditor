@@ -81,7 +81,7 @@ void Editor::loadEditor(std::string path1) {
 		}
 
 		std::string file_path;
-		if(!getline(file, file_path)) {
+		if(!getline(file, file_path)) {    
 			std::ofstream wfile("se_data_current.sedatac");
 			file_path = "main_v_6.txt";
 			wfile << file_path;
@@ -144,7 +144,7 @@ void Editor::loadLoop() {
 }
 
 void Editor::loadDraw() {
-	//window.draw(background);
+	window.draw(background);
 
 	leftNumBlock.setSize(sf::Vector2f(getGreyBlockSize(), window.getSize().y));
 	window.draw(leftNumBlock);
@@ -252,7 +252,7 @@ void Editor::loadAllEvents(sf::Event &event) {
 }
 
 void Editor::loadSwitchKeyPressedEvents(sf::Event &event) {
-	switch(event.key.code) {
+	switch(event.key.code) { 
 		case sf::Keyboard::Backspace:
 			cursor.cursorBackspace(*this, text);
 			break;
