@@ -22,6 +22,7 @@ private:
 	int fontSize;
 	int fontSizeSpacing;
 	sf::Font font;
+	int actionHappened;
 	std::vector<std::string> keywords;
 	std::vector<std::string> keywordsSpecial;
 	std::vector<sf::Text> textDrawVector;

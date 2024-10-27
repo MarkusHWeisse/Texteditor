@@ -19,6 +19,7 @@ Text::Text() {
 	keywordsSpecial = {"{", "}", "=", "!", "(", ")", ";", ":", "+", "-", "*", "/", "\"", ">", ",", "<"};
 
 	setFontSize(14, 20);
+	actionHappened = 0;
 }
 
 
@@ -92,6 +93,7 @@ void Text::loadEvents(Editor &editor, Cursor &cursor, sf::Event &event) {
 		loadTextWidthsBounds(cursor.getCursorLineNr());
 
 		editor.setTitleNotSaved();
+		actionHappened++;
 	}
 }
 
@@ -106,7 +108,7 @@ void Text::loadVars() {
 }
 
 void Text::loadFile(std::string file) {
-	loadFont("C:/CONSOLA.TTF");
+	loadFont("fonts/DejaVuSansMono.ttf");
 
 	lines.clear();
 
@@ -156,6 +158,7 @@ void Text::loadTextWidthsBounds(int lineNr) {
 		text3.setString(lines.at(lineNr));
 		textWidths.textWidth = text3.getLocalBounds().width;
 	}	
+	actionHappened++;
 }
 
 void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool deleteB) {
@@ -167,6 +170,7 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
 	}
 
 	lines.at(cursorLineNr) = lines.at(cursorLineNr).substr(0, cursorCharNr-(deleteB ? 1 : 0)) + sinsert + lines.at(cursorLineNr).substr(cursorCharNr, lines.at(cursorLineNr).size()-(cursorCharNr));
+	actionHappened++;
 }
 
 /*
@@ -177,6 +181,8 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
  */
 
 void Text::loadDraw(sf::RenderWindow &window, Editor &editor) {
+	if(actionHappened > 0) {
+		actionHappened = 0;
 	textDrawVector.clear();
 	int ilinec = ((int)bottomLine < 0) ? 0 : (int)bottomLine-1;
 	for(int i = 0;ilinec+i<lines.size() && ((i+1)*fontSizeSpacing + 3) <= window.getSize().y;i++) {
@@ -308,6 +314,7 @@ void Text::loadDraw(sf::RenderWindow &window, Editor &editor) {
 		textDraw.setPosition(editor.getGreyBlockSize() - textDraw.getString().getSize() * getCharWidth() - 5, i*fontSizeSpacing+3);
 		textDrawVector.push_back(textDraw);
 	}
+	}
 	drawText(window);
 	//window.display();	
 	drawText(window);
@@ -333,6 +340,7 @@ float Text::getBottomLine() {
 
 void Text::setBottomLine(float x) {
 	bottomLine = x;
+	actionHappened++;
 }
 
 std::string Text::getLine(int x) {
@@ -361,14 +369,17 @@ void Text::insertLines(int cursorLineNr, std::string text) {
 
 void Text::deleteLine(int x) {
 	lines.erase(lines.begin() + x);
+	actionHappened++;
 }
 
 void Text::addText(int x, std::string textAdd) {
 	lines.at(x) += textAdd;
+	actionHappened++;
 }
 
 void Text::setText(int x, std::string textSet) {
 	lines.at(x) = textSet;
+	actionHappened++;
 }
 
 void Text::setAllowInput() {
