@@ -24,7 +24,7 @@ Editor::Editor() {
 	//cursor.loadCursor(*this, text);
 	
 	window.create(sf::VideoMode(1200, 900), "Sovieditor");
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(30);
 
 	/*HWND win = window.getSystemHandle();
 	SetWindowLongPtr(win, GWL_EXSTYLE, GetWindowLongPtr(win, GWL_EXSTYLE) | WS_EX_LAYERED);
@@ -33,7 +33,7 @@ Editor::Editor() {
 
 	GreyBlockSize = 30;
 	background.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-	background.setPosition(0, 0);
+	background.setPosition(0, 0);    
 	background.setFillColor(sf::Color::White);
 	leftNumBlock.setSize(sf::Vector2f(30, window.getSize().y));
 	leftNumBlock.setFillColor(sf::Color(210, 210, 210));
