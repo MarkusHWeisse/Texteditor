@@ -174,6 +174,7 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*
  *
@@ -183,12 +184,17 @@ void Text::insertText(int cursorLineNr, int cursorCharNr, char insert, bool dele
  * */
 
 =======
+=======
+>>>>>>> main
 /*
  *
  *Yes this is absolute garbage code, deal with it.
  *It's only a prototype to see what something like this looks like. 
  *
  */
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
 
 void Text::loadDraw(sf::RenderWindow &window, Editor &editor) {
