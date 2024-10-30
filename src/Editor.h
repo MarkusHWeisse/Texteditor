@@ -32,7 +32,7 @@ private:
 	FRONTEND_P20241023_TEXTEDIT::Text text;
 	FRONTEND_P20241023_TEXTEDIT::Cursor cursor;
 	FRONTEND_P20241023_TEXTEDIT::Slider slider;
-	BACKEND_P20241027_TEXTEDIT::File file;
+	//BACKEND_P20241027_TEXTEDIT::File file;
 	int GreyBlockSize;
 	bool setCTRL;
 	bool setAlt;

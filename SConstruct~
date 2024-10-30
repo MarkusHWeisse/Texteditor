@@ -21,7 +21,6 @@ env.Append(CCFLAGS=["-lcomdlg32"]);
 env.Append(CCFLAGS=["-lole32"]);
 env.Append(CCFLAGS=["-static-libgcc"]);
 env.Append(CCFLAGS=["-static-libstdc++"]);
-env.Append(CCFLAGS=["-municode"]);
 env.Append(CCFLAGS=["-gdwarf-2"]);
 env['ENV']['PATH'] = [r'C:\mingw64\bin']
 env['CXX'] = 'g++' #g++ x86_64-w64-mingw32-c++

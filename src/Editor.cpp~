@@ -8,15 +8,6 @@
 #include <shobjidl.h>
 #include <objbase.h>
 
-#include "FRONTEND_P20241023_TEXTEDIT/FRONTEND_P20241023_TEXTEDIT.h"
-#include "FRONTEND_P20241023_TEXTEDIT/EditorMouse.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Cursor.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Slider.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Text.h"
-#include "FRONTEND_P20241023_TEXTEDIT/MarkedText.h"
-#include "Editor.h"
-
-
 #define USE_SELF
 
 #ifdef USE_SELF
@@ -26,6 +17,14 @@
 #include <conio.h>
 #include <direct.h>
 //#define _WIN32_WINNT 0x0600 
+#include "FRONTEND_P20241023_TEXTEDIT/FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT/EditorMouse.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Cursor.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Slider.h"
+#include "FRONTEND_P20241023_TEXTEDIT/Text.h"
+#include "FRONTEND_P20241023_TEXTEDIT/MarkedText.h"
+#include "Editor.h"
+
 
 #define _WIN32
 

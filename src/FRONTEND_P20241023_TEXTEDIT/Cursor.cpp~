@@ -15,24 +15,6 @@
 
 namespace FRONTEND_P20241023_TEXTEDIT {
 
-Cursor::Cursor(MarkedText MT) {
-	
-	this->posXAtClick = -1;
-	
-	this->lineNrAtClick = -1;
-	
-	this->posYAtClick = -1;
-	
-	this->textMovingWhileMarkingSpeed = 10;
-	
-	this->textMovingWhileMarkingSet = 0;
-	
-	this->MT = MT;
-	
-	MT.unsetActive();
-	
-}
-
 int Cursor::setMousePosXToCursorPosXValues(Editor &editor, Text &text, int charSize, int charSizeBef, sf::Vector2i &mcords) {
 	
 	int r;
@@ -807,6 +789,24 @@ void Cursor::ctrlV(Editor &editor, Text &text) {
 	
 	text.denieInput();
 
+}
+
+Cursor::Cursor(MarkedText MT) {
+	
+	this->posXAtClick = -1;
+	
+	this->lineNrAtClick = -1;
+	
+	this->posYAtClick = -1;
+	
+	this->textMovingWhileMarkingSpeed = 10;
+	
+	this->textMovingWhileMarkingSet = 0;
+	
+	this->MT = MT;
+	
+	MT.unsetActive();
+	
 }
 
 bool Cursor::defaultMTIsActive() {
