@@ -8,106 +8,29 @@
 #include <shobjidl.h>
 #include <objbase.h>
 
-#include "FRONTEND_P20241023_TEXTEDIT/FRONTEND_P20241023_TEXTEDIT.h"
-#include "FRONTEND_P20241023_TEXTEDIT/EditorMouse.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Cursor.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Slider.h"
-#include "FRONTEND_P20241023_TEXTEDIT/Text.h"
-#include "FRONTEND_P20241023_TEXTEDIT/MarkedText.h"
+#include "FRONTEND_P20241023_TEXTEDIT.h"
+#include "FRONTEND_P20241023_TEXTEDIT_EditorMouse.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Cursor.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Slider.h"
+#include "FRONTEND_P20241023_TEXTEDIT_Text.h"
+#include "FRONTEND_P20241023_TEXTEDIT_MarkedText.h"
 #include "Editor.h"
 
-
-#define USE_SELF
-
-#ifdef USE_SELF
-#include <windows.h>
-#include <commdlg.h>
-#include <shlobj.h>
-#include <conio.h>
-#include <direct.h>
-//#define _WIN32_WINNT 0x0600 
-
-#define _WIN32
-
-#ifndef UNICODE
-#define UNICODE
-#endif 
-
-#define NTDDI_VERSION 0x0A000006 //NTDDI_WIN10_RS5
-#define _WIN32_WINNT 0x0A00
-
-std::string print_wide(const wchar_t* wstr) {
-    std::mbstate_t state = std::mbstate_t();
-    std::size_t len = 1 + std::wcsrtombs(nullptr, &wstr, 0, &state);
-    std::vector<char> mbstr(len);
-    std::wcsrtombs(&mbstr[0], &wstr, mbstr.size(), &state);
-    //std::cout << &mbstr[0] << std::endl;
-    return std::string(mbstr.begin(), mbstr.end());
-}
-
-
-std::string fileDialogWinApi() {
-	std::string s1;
-	//s1 = "C:\\Users\\marku\\OneDrive\\Dokumente\\privat\\Projects\\SovieditorV2.0\\prevver\\mainTest.cpp";
-	HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
-    if (SUCCEEDED(hr)) {
-        IFileOpenDialog* pFileOpen;
-
-        hr = CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_ALL,IID_IFileOpenDialog, reinterpret_cast<void**>(&pFileOpen));
-        // if object created ( that's com object )
-        if (SUCCEEDED(hr)) {
-            hr = pFileOpen->Show(NULL);
-
-            if (SUCCEEDED(hr)) {
-                IShellItem* pItem;
-                hr = pFileOpen->GetResult(&pItem);
-                if (SUCCEEDED(hr)){
-                    PWSTR pszFilePath;
-                    hr = pItem->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath);
-
-                    if (SUCCEEDED(hr)) {
-                        //MessageBoxW(NULL, pszFilePath, L"File Path", MB_OK);
-                        s1 = print_wide(pszFilePath);
-                        CoTaskMemFree(pszFilePath);
-
-                        std::string stringtoconvert;
-
-                        std::wstring temp = std::wstring(stringtoconvert.begin(), stringtoconvert.end());
-                        LPCWSTR lpcwstr = temp.c_str();
-                    }
-                    pItem->Release();
-                }
-            }
-            pFileOpen->Release();
-        }
-        CoUninitialize();
-    }    
-    return s1;
-}
-#else
-
-#include "tinyfiledialogs.h"
-
-#endif
-
-//Editor::Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse)  : text(text), cursor(cursor), slider(slider), mouse(mouse) {
-Editor::Editor() {
+Editor::Editor(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor, FRONTEND_P20241023_TEXTEDIT::Slider &slider, FRONTEND_P20241023_TEXTEDIT::EditorMouse &mouse)  : text(text), cursor(cursor), slider(slider), mouse(mouse) {
 	/*setTextObj(text);
 	setCursorObj(cursor);
 	setSliderObj(slider);*/
-	//cursor.loadCursor(*this, text);
 	
 	window.create(sf::VideoMode(1200, 900), "Sovieditor");
-	window.setFramerateLimit(30);
+	window.setFramerateLimit(60);
 
-	/*HWND win = window.getSystemHandle();
+	HWND win = window.getSystemHandle();
 	SetWindowLongPtr(win, GWL_EXSTYLE, GetWindowLongPtr(win, GWL_EXSTYLE) | WS_EX_LAYERED);
 	SetLayeredWindowAttributes(window.getSystemHandle(), 0x00FFFFFF, 228, LWA_ALPHA);
-	*/
 
 	GreyBlockSize = 30;
 	background.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
-	background.setPosition(0, 0);    
+	background.setPosition(0, 0);
 	background.setFillColor(sf::Color::White);
 	leftNumBlock.setSize(sf::Vector2f(30, window.getSize().y));
 	leftNumBlock.setFillColor(sf::Color(210, 210, 210));
@@ -132,7 +55,7 @@ void Editor::writeFile(FRONTEND_P20241023_TEXTEDIT::Text &text) {
 }
 
 void Editor::openFile(FRONTEND_P20241023_TEXTEDIT::Text &text, FRONTEND_P20241023_TEXTEDIT::Cursor &cursor) {
-	std::string file_path = fileDialogWinApi();//tinyfd_utf16toMbcs(tinyfd_openFileDialogW(tinyfd_utf8to16("This scheiße"), tinyfd_utf8to16("C:\\"), 0, NULL, NULL, 0));
+	std::string file_path = "main_v_6";//fileDialogWinApi();
 	text.loadFile(file_path);
 	text.loadText();
 	cursor.loadVars(*this);
@@ -155,9 +78,9 @@ void Editor::loadEditor(std::string path1) {
 		}
 
 		std::string file_path;
-		if(!getline(file, file_path)) {    
+		if(!getline(file, file_path)) {
 			std::ofstream wfile("se_data_current.sedatac");
-			file_path = "../main_v_6.txt";
+			file_path = "main_v_6";
 			wfile << file_path;
 			wfile.close();
 		}
@@ -214,11 +137,11 @@ void Editor::loadLoop() {
 		loadAllDraws();
 
 		window.display();
-	}
+    }
 }
 
 void Editor::loadDraw() {
-	window.draw(background);
+	//window.draw(background);
 
 	leftNumBlock.setSize(sf::Vector2f(getGreyBlockSize(), window.getSize().y));
 	window.draw(leftNumBlock);
@@ -326,7 +249,7 @@ void Editor::loadAllEvents(sf::Event &event) {
 }
 
 void Editor::loadSwitchKeyPressedEvents(sf::Event &event) {
-	switch(event.key.code) { 
+	switch(event.key.code) {
 		case sf::Keyboard::Backspace:
 			cursor.cursorBackspace(*this, text);
 			break;
@@ -366,7 +289,6 @@ void Editor::loadSwitchKeyPressedEvents(sf::Event &event) {
 			break;
 		case sf::Keyboard::O:
 			if(getCTRL()) {
-				//std::cout << "asfdsafasdfasfdsdafasdf";
 				openFile(text, cursor);
 				loadVars();
 				loadLoop();
@@ -468,7 +390,7 @@ void Editor::setTextObj(FRONTEND_P20241023_TEXTEDIT::Text text) {
 }
 
 void Editor::setCursorObj(FRONTEND_P20241023_TEXTEDIT::Cursor &cursor) {
-	this->cursor = cursor;
+	//this->cursor = cursor;
 	
 	cursor.loadCursor(*this, text);
 }
